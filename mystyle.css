@@ -12,6 +12,7 @@ body{
 
 }
 
+
 #S1{
     display: inline-block;
     width: 100%;
@@ -35,7 +36,6 @@ body{
 #S3{
     background-color: rgb(245, 240, 230);
     p{
-        font-size: 28px;
         color: white;
     }
     h2{
@@ -94,23 +94,29 @@ a {
 li a:hover {
     background-color:white;
     color: #182b49;
+}
 
-@media screen and (min-width: 800px) {
-    ul{
+@media screen and (max-width: 800px) {
+    ul {
         display: none;
     }
+
+    body{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    
+        h2{
+            font-size: 28px;
+        }
+        p{
+            font-size: 20px;
+        }
+    }
     #Pic1{
-        max-width: 75%;
+        width: 75%;
     }
-    h2{
-        font-size: 24px;
-    }
-    p{
-        font-size: 20px
-    }
-    #grid4{
+    .grid{
         grid-template-columns: repeat(2,1fr);
     }
-}
-      
 }
