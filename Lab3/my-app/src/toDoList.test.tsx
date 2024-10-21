@@ -33,5 +33,21 @@ describe("Checked counter", () => {
 
     });
 
+    test("counter decrements", () => {
+        render(<ToDoList/>);
+
+        const checkboxes = screen.getAllByRole('checkbox');
+        const appleCheckbox = checkboxes[0];
+        const bananaCheckbos = checkboxes[1];
+
+        const counterZero = screen.getByText(/Items bought: 0/i);
+
+        fireEvent.click(appleCheckbox);
+        
+        fireEvent.click(appleCheckbox);
+
+        expect(counterZero).toBeInTheDocument();
+
+    });
 
 });
