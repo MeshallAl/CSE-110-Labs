@@ -55,6 +55,13 @@ export const StickyNotes = () => {
 	setFavourites(favourites.filter(favouriteTitle => favouriteTitle !== notes.find(note => note.id === id)?.title));
 	};
 
+	const handleNoteEdit = (id: number, field: string, value: string) => {
+		setNotes(notes.map(note => 
+		  note.id === id ? { ...note, [field]: value } : note
+		));
+	  };
+	
+
 	const [currentTheme, setCurrentTheme] = useState(themes.light);
 
 	const toggleTheme = () => {
@@ -77,6 +84,7 @@ export const StickyNotes = () => {
 					</div>
 					<div>
 						<textarea
+							placeholder='Note Content'
 							value={createNote.content}
 							onChange={(event) =>
 							setCreateNote({ ...createNote, content: event.target.value})}
@@ -119,9 +127,24 @@ export const StickyNotes = () => {
 							</button>
 							<button onClick={() => deleteNoteHandler(note.id)}>x</button>
 						</div>
-						<h2 contentEditable="true"> {note.title} </h2>
-						<p contentEditable="true"> {note.content} </p>
-						<p contentEditable="true"> {note.label} </p>
+						<h2 contentEditable="true"
+                			suppressContentEditableWarning={true}
+                			onBlur={(e) => handleNoteEdit(note.id, 'title', e.target.innerText)}
+						> 
+							{note.title} 
+						</h2>
+						<p contentEditable="true"
+                			suppressContentEditableWarning={true}
+                			onBlur={(e) => handleNoteEdit(note.id, 'content', e.target.innerText)}
+						> 
+							{note.content} 
+						</p>
+						<p contentEditable="true"
+                			suppressContentEditableWarning={true}
+                			onBlur={(e) => handleNoteEdit(note.id, 'label', e.target.innerText)}
+						>  
+							{note.label} 
+						</p>
 					</div>
 					))}
 				</div>
